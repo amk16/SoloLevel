@@ -9,11 +9,44 @@ class UserProfile:
         self.constitution = 0
         self.charisma = 0
         self.skills = {}
-        self.active_tasks = []
+        self.active_tasks = [] 
         self.finished_tasks = []
         self.money = 0
 
     def to_dict(self):
+        return {
+            "level": self.level,
+            "experience":self.experience,
+            "strength" : self.strength,
+            "intelligence" : self.intelligence,
+            "dexterity": self.dexterity,
+            "constitution": self.constitution,
+            "charisma": self.charisma,
+            "money": self.money,
+            "skills": self.skills,
+            "active_tasks": [task.to_dict() for task in self.active_tasks],
+            "finished_tasks": [task.to_dict() for task in self.finished_tasks],
+
+
+        }
+    @classmethod
+    def from_dict(cls,data):
+        instance = cls()
+        instance.level = data.get("level",1)
+        instance.experience = data.get("experience",0)
+        instance.strength =  data.get("strength",0)
+        instance.dexterity = data.get("dexterity",0)
+        instance.constitution =  data.get("constitution",0)
+        instance.charisma = data.get("charisma",0)
+        instance.money = data.get("money",0)
+        instance.skills = data.get("skills", {})
+        instance.active_tasks = [Task.from_dict(task) for task in data.get("active_tasks",[])]
+        instance.finished_tasks = [Task.from_dict(task) for task in data.get("finished_tasks",[])]
+        return instance
+
+
+
+        
         
     #increase level
     def level_up(self):
