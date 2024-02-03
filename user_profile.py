@@ -1,3 +1,4 @@
+import json
 class UserProfile:
     def __init__(self):
         self.level = 1
@@ -12,9 +13,18 @@ class UserProfile:
         self.finished_tasks = []
         self.money = 0
 
+    def to_dict(self):
+        
     #increase level
     def level_up(self):
         self.level+=1
+    #handle events on level up
+    def on_level_up(self):
+        #Reset experience till next level
+        #Raise attributes
+        #Check/add for new milestones/skills
+
+        
     #increase experience
     def exp_up(self,expPoints):
         self.experience+= expPoints
