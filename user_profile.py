@@ -45,19 +45,27 @@ class UserProfile:
         return instance
 
 
-
+    general_update = {"strength": 1, "dexterity" : 1, "constitution" : 1, "intelligence":1 ,"charisma" :1}
         
         
     #increase level
     def level_up(self):
         self.level+=1
+        self.on_level_up()
     #handle events on level up
+   
+    def update_attributes(self,updates):
+        for attr,value in updates.items():
+            current_value = getattr(self,attr)
+            setattr(self,attr,current_value+value)
+    
     def on_level_up(self):
         #Reset experience till next level
         #Raise attributes
-        #Check/add for new milestones/skills
+        #Check/add for new milestones/skills 
+        self.update_attributes(self.general_update)
 
-        
+
     #increase experience
     def exp_up(self,expPoints):
         self.experience+= expPoints
@@ -91,5 +99,38 @@ class UserProfile:
         self.money+= amount
     #decrease money
     def bummin_out(self,amount):
-        self.money+=amount
+        self.money-=amount
+
+    def get_level(self):
+        return self.level
+
+    def get_experience(self):
+        return self.experience
+
+    def get_strength(self):
+        return self.strength
+
+    def get_intelligence(self):
+        return self.intelligence
+
+    def get_dexterity(self):
+        return self.dexterity
+
+    def get_constitution(self):
+        return self.constitution
+
+    def get_charisma(self):
+        return self.charisma
+
+    def get_skills(self):
+        return self.skills
+
+    def get_active_tasks(self):
+        return self.active_tasks
+
+    def get_finished_tasks(self):
+        return self.finished_tasks
+
+    def get_money(self):
+        return self.money
 
