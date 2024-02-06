@@ -10,7 +10,7 @@ class Task():
     def to_dict(self):
         return {
             "title" : self.title,
-            "Id" : self.title,
+            "Id" : self.Id,
             "exp" : self.exp,
             "reward" : self.reward,
             "complete_reqs":  self.complete_reqs,
@@ -33,6 +33,21 @@ class Task():
     
     def edit_complete_reqs(self, complete_reqs):
         self.complete_reqs = complete_reqs
+
+    def get_title(self):
+        return self.title
+
+    def get_Id(self):
+        return self.Id
+
+    def get_exp(self):
+        return self.exp
+
+    def get_reward(self):
+        return self.reward
+
+    def get_complete_reqs(self):
+        return self.complete_reqs
 
 
     

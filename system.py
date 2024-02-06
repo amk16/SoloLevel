@@ -43,7 +43,7 @@ class System():
             if task.Id == Id:
                 self.user_profile.finished_tasks.append(task)
                 self.user_profile.active_tasks.remove(task)
-                print(f"Task {task.getId()}: {task.getTitle()} has been completed")
+                print(f"Task {task.get_Id()}: {task.get_Title()} has been completed")
                 return
             else:
                 print(f"Task {Id} does not exist")
@@ -51,10 +51,10 @@ class System():
     def show_tasks(self):
         print("Active tasks:")
         for task in self.user_profile.get_active_tasks():
-            print(f"- {task.getId()}: {task.getTitle()}")
+            print(f"- {task.get_Id()}: {task.get_Title()}")
         
         print("Finished tasks:")
         for task in self.user_profile.get_active_tasks():
-            print(f"- {task.getId()}: {task.getTitle()}")
+            print(f"- {task.get_Id()}: {task.get_Title()}")
 
     
