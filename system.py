@@ -1,6 +1,6 @@
 from user_profile import UserProfile
 from task import Task
-class system():
+class System():
     def __init__(self):
         self.user_profile = UserProfile()
 
@@ -23,7 +23,7 @@ class system():
         command = parts[0]
         args =  parts.split(' ') if len(parts) > 1 else []
         self.execute_command(command,*args)
-        
+
 
 
     def execute_command(self,command, *args):
