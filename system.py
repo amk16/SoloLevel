@@ -1,10 +1,14 @@
 from user_profile import UserProfile
 from task import Task
+import storage
 class System():
     def __init__(self):
-        self.user_profile = UserProfile()
+        self.user_profile = storage.load_user_data()
+    
+    def save_user_profile(self):
+        storage.save_data(self.user_profile)
 
-    def enter_excute_mode(self):
+    def enter_execute_mode(self):
         """Enters a mode commands can be executed directly."""
         print("Enter execute mode. Type 'exit' to return")
         self.execute_mode_active = True
@@ -19,7 +23,7 @@ class System():
 
     def process_command(self,user_input):
         """Processes a single command input."""
-        parts =  user_input.split('',1)
+        parts =  user_input.split(' ',1)
         command = parts[0]
         args =  parts.split(' ') if len(parts) > 1 else []
         self.execute_command(command,*args)
@@ -43,7 +47,7 @@ class System():
             if task.Id == Id:
                 self.user_profile.finished_tasks.append(task)
                 self.user_profile.active_tasks.remove(task)
-                print(f"Task {task.get_Id()}: {task.get_Title()} has been completed")
+                print(f"Task {task.get_Id()}: {task.get_title()} has been completed")
                 return
             else:
                 print(f"Task {Id} does not exist")
@@ -54,7 +58,7 @@ class System():
             print(f"- {task.get_Id()}: {task.get_Title()}")
         
         print("Finished tasks:")
-        for task in self.user_profile.get_active_tasks():
+        for task in self.user_profile.get_finished_tasks():
             print(f"- {task.get_Id()}: {task.get_Title()}")
 
     
